@@ -4,5 +4,14 @@
 	"autoload": {
 		"psr-0": { "": "src/" },
 		"classmap": ["src/gen-php/"]
+	},
+	"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/getyourguide/thrift-lib"
+        }
+    	],
+	"require": {
+	    "gyg/thrift-lib": "dev-master"
 	}
 }
