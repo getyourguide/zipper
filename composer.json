@@ -2,6 +2,7 @@
 	"name": "gyg/zipper",
 	"description": "PHP convenience library to interact with Zipkin",
 	"autoload": {
-		"psr-0": { "": "src/" }
+		"psr-0": { "": "src/" },
+		"classmap": ["src/gen-php/"]
 	}
 }
