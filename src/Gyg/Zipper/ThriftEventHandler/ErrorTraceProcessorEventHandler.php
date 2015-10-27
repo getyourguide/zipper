@@ -6,7 +6,7 @@ use Gyg\Zipper\TraceHelper;
 use TProcessorEventHandler;
 use Zipkin\AnnotationType;
 
-class ThriftProcessorEventHandler extends TProcessorEventHandler
+class ErrorTraceProcessorEventHandler extends TProcessorEventHandler
 {
 	protected $traceHelper;
 	protected $serviceName;
@@ -20,16 +20,6 @@ class ThriftProcessorEventHandler extends TProcessorEventHandler
 	public function getHandlerContext($fn_name)
 	{
 		return $this->traceHelper->createNextSpan($fn_name);
-	}
-
-	public function preRead($handler_context, $fn_name, $args)
-	{
-		$this->traceHelper->annotateServerReceive($handler_context, $this->serviceName);
-	}
-
-	public function postWrite($handler_context, $fn_name, $result)
-	{
-		$this->traceHelper->annotateServerSend($handler_context, $this->serviceName);
 	}
 
 	public function handlerError($handler_context, $fn_name, $exception)

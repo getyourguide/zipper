@@ -7,7 +7,7 @@ use RuntimeException;
 use TClientEventHandler;
 use Zipkin\AnnotationType;
 
-class ThriftClientEventHandler extends TClientEventHandler
+class ErrorTraceClientEventHandler extends TClientEventHandler
 {
 	protected $handlerContext = [];
 	protected $traceHelper;
@@ -17,12 +17,6 @@ class ThriftClientEventHandler extends TClientEventHandler
 	{
 		$this->traceHelper = $traceHelper;
 		$this->serviceName = $serviceName;
-	}
-
-	public function preSend($fn_name, $args, $sequence_id)
-	{
-		$this->handlerContext[$fn_name . ':' . $sequence_id] = $this->traceHelper->createNextSpan($fn_name);
-		$this->traceHelper->annotateClientSend($this->handlerContext[$fn_name . ':' . $sequence_id], $this->serviceName);
 	}
 
 	public function sendError($fn_name, $args, $sequence_id, $ex)
@@ -35,20 +29,6 @@ class ThriftClientEventHandler extends TClientEventHandler
 			);
 			//cleanup
 			unset($this->handlerContext[$fn_name . ':' . $sequence_id]);
-		} else {
-			throw new RuntimeException('missing context');
-		}
-	}
-
-	public function postRecv($fn_name, $ex_sequence_id, $result)
-	{
-		if ($this->handlerContext[$fn_name . ':' . $ex_sequence_id] !== null) {
-			$this->traceHelper->annotateClientReceive(
-				$this->handlerContext[$fn_name . ':' . $ex_sequence_id],
-				$this->serviceName
-			);
-			//cleanup
-			unset($this->handlerContext[$fn_name . ':' . $ex_sequence_id]);
 		} else {
 			throw new RuntimeException('missing context');
 		}
