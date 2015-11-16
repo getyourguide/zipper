@@ -58,7 +58,7 @@ class ZipkinHttpHeaders {
 
     public function populateByHeaders()
     {
-        $this->populateByHeaders(getallheaders());
+        $this->populateByHeadersArray(getallheaders());
     }
 
     public function populateByHeadersArray(array $headers)
