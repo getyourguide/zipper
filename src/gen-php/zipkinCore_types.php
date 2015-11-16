@@ -9,9 +9,6 @@
 namespace Zipkin;
 
 
-require_once $GLOBALS['THRIFT_ROOT'].'/Thrift.php';
-
-
 final class AnnotationType {
   const BOOL = 0;
   const BYTES = 1;
@@ -208,7 +205,7 @@ class Annotation implements \IThriftStruct {
         $this->host = $vals['host'];
       }
     } else if ($vals) {
-      throw new TProtocolException(
+      throw new \TProtocolException(
         'Annotation constructor must be passed array or null'
       );
     }
@@ -351,7 +348,7 @@ class BinaryAnnotation implements \IThriftStruct {
         $this->host = $vals['host'];
       }
     } else if ($vals) {
-      throw new TProtocolException(
+      throw new \TProtocolException(
         'BinaryAnnotation constructor must be passed array or null'
       );
     }
@@ -445,7 +442,7 @@ class BinaryAnnotation implements \IThriftStruct {
     }
     if (isset($this->host) && $this->host !== null) {
       if (!is_object($this->host)) {
-        throw new \TProtocolException('Bad type in structure.',\ TProtocolException::INVALID_DATA);
+        throw new \TProtocolException('Bad type in structure.', \TProtocolException::INVALID_DATA);
       }
       $xfer += $output->writeFieldBegin('host', \TType::STRUCT, 4);
       $xfer += $this->host->write($output);
@@ -543,7 +540,7 @@ class Span implements \IThriftStruct {
         $this->debug = $vals['debug'];
       }
     } else if ($vals) {
-      throw new TProtocolException(
+      throw new \TProtocolException(
         'Span constructor must be passed array or null'
       );
     }

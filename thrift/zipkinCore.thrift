@@ -14,6 +14,7 @@
 namespace java com.twitter.zipkin.thriftjava
 #@namespace scala com.twitter.zipkin.thriftscala
 namespace rb Zipkin
+namespace php Zipkin
 
 #************** Common annotation values **************
 const string CLIENT_SEND = "cs"

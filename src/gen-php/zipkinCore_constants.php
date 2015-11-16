@@ -5,12 +5,10 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-//require_once $GLOBALS['THRIFT_ROOT'].'/packages/zipkinCore/zipkinCore_types.php';
 
 namespace Zipkin;
 
-
-class zipkinCore_CONSTANTS {
+class CONSTANTS {
   const CLIENT_SEND = "cs";
   const CLIENT_RECV = "cr";
   const SERVER_SEND = "ss";
@@ -32,6 +30,6 @@ class zipkinCore_CONSTANTS {
   );
 }
 
-$GLOBALS['zipkinCore_CONSTANTS'] = zipkinCore_CONSTANTS::$__values;
+$GLOBALS['zipkinCore_CONSTANTS'] = CONSTANTS::$__values;
 
 ?>
