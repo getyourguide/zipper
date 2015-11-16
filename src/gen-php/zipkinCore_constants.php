@@ -8,7 +8,7 @@
 
 namespace Zipkin;
 
-class CONSTANTS {
+class zipkinCore_CONSTANTS {
   const CLIENT_SEND = "cs";
   const CLIENT_RECV = "cr";
   const SERVER_SEND = "ss";
@@ -30,6 +30,6 @@ class CONSTANTS {
   );
 }
 
-$GLOBALS['zipkinCore_CONSTANTS'] = CONSTANTS::$__values;
+$GLOBALS['zipkinCore_CONSTANTS'] = zipkinCore_CONSTANTS::$__values;
 
 ?>
