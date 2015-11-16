@@ -32,10 +32,10 @@ class ZipkinHttpHeaders {
     public function getHeadersArray()
     {
         $headers = [];
-        $headers[self::TRACE_ID] = dechex($this->traceId);
-        $headers[self::SPAN_ID] = dechex($this->spanId);
+        $headers[self::TRACE_ID] = $this->traceId;
+        $headers[self::SPAN_ID] = $this->spanId;
         if ($this->parentSpanId !== null) {
-            $headers[self::PARENT_SPAN_ID] = dechex($this->parentSpanId);
+            $headers[self::PARENT_SPAN_ID] = $this->parentSpanId;
         }
         if ($this->flags !== null) {
             $headers[self::$flags] = $this->flags;
@@ -56,18 +56,23 @@ class ZipkinHttpHeaders {
         return $span;
     }
 
-    public function populateByHeaders(array $headers)
+    public function populateByHeaders()
+    {
+        $this->populateByHeaders(getallheaders());
+    }
+
+    public function populateByHeadersArray(array $headers)
     {
         foreach ($headers as $name => $value) {
             switch ($name) {
                 case self::TRACE_ID:
-                    $this->traceId = hexdec($value);
+                    $this->traceId = $value;
                     break;
                 case self::PARENT_SPAN_ID:
-                    $this->parentSpanId = hexdec($value);
+                    $this->parentSpanId = $value;
                     break;
                 case self::SPAN_ID:
-                    $this->spanId = hexdec($value);
+                    $this->spanId = $value;
                     break;
                 case self::SAMPLED:
                     $this->sampled = ($value === '1');
