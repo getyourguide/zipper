@@ -1,17 +1,17 @@
 {
 	"name": "gyg/zipper",
 	"description": "PHP convenience library to interact with Zipkin",
+	"authors": [
+		{
+			"name": "Ralph Schwaninger",
+			"email": "ralph@getyourguide.com"
+		}
+	],
 	"autoload": {
 		"psr-0": { "": "src/" },
 		"classmap": ["src/gen-php/"]
 	},
-	"repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/getyourguide/thrift-lib"
-        }
-    	],
 	"require": {
-	    "gyg/thrift-lib": "dev-master"
+	    "gyg/thrift-lib": "1.0.0"
 	}
 }
