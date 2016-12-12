@@ -12,6 +12,6 @@
 		"classmap": ["src/gen-php/"]
 	},
 	"require": {
-	    "gyg/thrift-lib": "1.0.0"
+	    "gyg/thrift-lib": "1.0.1"
 	}
 }
